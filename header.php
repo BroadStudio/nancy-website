@@ -19,3 +19,10 @@
 	<title>[Page Title] | [Site Title]</title>
 	<?php wp_head(); ?>
 </head>
+<body>
+
+<header>
+    <nav>[Main Navigation]</nav>
+    <div id="site_logo">[Logo with alt of site title]</div>
+    <div id="page_intro">[Welcome Message]</div>
+</header>
