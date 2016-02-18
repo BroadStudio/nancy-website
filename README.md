@@ -1,1 +1,1 @@
-# nancy-website
+# Nancy Peterson Counseling WordPress Theme
