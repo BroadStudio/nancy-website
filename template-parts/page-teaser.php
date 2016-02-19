@@ -1,17 +1,28 @@
-<div class="page-teaser">
-    <img src="http://placehold.it/350x150" />
-    <h2>Page Title</h2>
-    <p>Synth ethical lo-fi, poutine gluten-free taxidermy sustainable iPhone williamsburg mumblecore pug umami meh. Narwhal normcore four loko kickstarter vinyl mumblecore pinterest. Affogato taxidermy stumptown chambray next level, flexitarian poutine meh helvetica heirloom. You probably haven't heard of them quinoa normcore, photo booth roof party poutine fashion axe tofu yr meditation tilde portland etsy.</p>
-</div>
+<?php
 
-<div class="page-teaser">
-    <img src="http://placehold.it/350x150" />
-    <h2>Page Title</h2>
-    <p>Synth ethical lo-fi, poutine gluten-free taxidermy sustainable iPhone williamsburg mumblecore pug umami meh. Narwhal normcore four loko kickstarter vinyl mumblecore pinterest. Affogato taxidermy stumptown chambray next level, flexitarian poutine meh helvetica heirloom. You probably haven't heard of them quinoa normcore, photo booth roof party poutine fashion axe tofu yr meditation tilde portland etsy.</p>
-</div>
+    function display_page_teaser($field_slug) {
+        global $post;
+        
+        $post_object = get_field($field_slug);
+    
+        if( $post_object ): 
+	        $post = $post_object;
+	        setup_postdata( $post ); 
+	        $image = get_field('image'); ?>
+            <div class="page-teaser">
+                <?php if( !empty($image) ): ?>
+	                <a href="<?php the_permalink(); ?>"><img src="<?php echo $image['url']; ?>" alt=" " />
+                <?php endif; ?>
+    	        <h2><?php the_title(); ?></h2></a>
+    	        <p><?php the_field('teaser_description'); ?></p>
+            </div>
+            <?php wp_reset_postdata(); // IMPORTANT - reset the $post object so the rest of the page works correctly ?>
+        <?php endif;
+    }
 
-<div class="page-teaser">
-    <img src="http://placehold.it/350x150" />
-    <h2>Page Title</h2>
-    <p>Synth ethical lo-fi, poutine gluten-free taxidermy sustainable iPhone williamsburg mumblecore pug umami meh. Narwhal normcore four loko kickstarter vinyl mumblecore pinterest. Affogato taxidermy stumptown chambray next level, flexitarian poutine meh helvetica heirloom. You probably haven't heard of them quinoa normcore, photo booth roof party poutine fashion axe tofu yr meditation tilde portland etsy.</p>
-</div>
+display_page_teaser('first_page_teaser');
+display_page_teaser('second_page_teaser');
+display_page_teaser('third_page_teaser');
+
+
+?>
