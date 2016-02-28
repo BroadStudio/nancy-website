@@ -16,15 +16,30 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 	<link rel="shortcut icon" href="<?php echo get_stylesheet_directory_uri(); ?>/favicon.ico" />
-	<title><?php wp_title(''); ?> | <?php echo bloginfo('name'); ?></title>
+	<title>
+	    <?php if (!is_front_page()) {
+	        wp_title('');
+	        echo " | " ;
+	    }
+	    echo bloginfo('name'); ?>
+	</title>
 	<?php wp_head(); ?>
 </head>
 <body>
 
 <header>
-    <nav>[Main Navigation]
+    <nav>
         <?php wp_nav_menu( array( 'theme_location' => 'main-menu' ) ); ?>
     </nav>
-    <div id="site_logo">[Logo with alt of site title]</div>
+    
+    <h1 class="site-title">
+    <a href="<?php echo esc_url( home_url( '/' ) ); ?>" id="site-logo" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home">
+    <?php if ( get_theme_mod( 'modtherapy_logo' ) ) : ?>
+        <img src="<?php echo get_theme_mod( 'modtherapy_logo' ); ?>" alt="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>">
+    <?php else : ?>
+        <?php bloginfo( 'name' ); ?>
+    <?php endif; ?>
+    </a>
+    </h1>
     <div id="page_intro">[Welcome Message]</div>
 </header>

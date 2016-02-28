@@ -1,5 +1,7 @@
 <?php
 
+include_once('inc/customizer.php');
+
 function modtherapy_enqueue_style() {
 	wp_enqueue_style( 'core', get_stylesheet_directory_uri().'/style.css', false ); 
 }
